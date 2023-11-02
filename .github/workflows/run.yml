@@ -28,13 +28,10 @@ jobs:
 
       - name: Run getcoins.py uwu~
         run: python getcoins.py
+        continue-on-error: true
 
-      - name: Wait for getcoins.py to finish owo~
-        run: |
-          while [[ "$(pgrep -f getcoins.py)" ]]; do
-            sleep 10
-          done
-          timeout 10m
+      - name: Wait for 1 minute owo~
+        run: sleep 60
 
       - name: Run webhook.py uwu~
         run: python webhook.py
