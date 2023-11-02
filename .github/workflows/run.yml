@@ -1,8 +1,8 @@
-name: Run every 3 Hr 10 Min
+name: Run every 4 Hours
 
 on:
   schedule:
-    - cron: "*/190 * * * *"
+    - cron: "0 */4 * * *"
   workflow_dispatch: {}
 
 jobs:
