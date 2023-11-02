@@ -1,0 +1,41 @@
+name: Run every 3H5M
+
+on:
+  schedule:
+    - cron: "*/4 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      hanime_email: ${{ secrets.EID }}
+      hanime_password: ${{ secrets.PASS }}
+
+    steps:
+      - name: Checkout the code nya~
+        uses: actions/checkout@v2
+
+      - name: Set up Python environment uwu~
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.6
+          name: Set up Python environment
+
+      - name: Install Python dependencies nyaa~
+        run: pip install -r requirements.txt
+
+      - name: Run getcoins.py uwu~
+        run: python getcoins.py
+
+      - name: Wait for getcoins.py to finish owo~
+        run: |
+          while [[ "$(pgrep -f getcoins.py)" ]]; do
+            sleep 10
+          done
+          timeout 10m
+
+      - name: Run webhook.py uwu~
+        run: python webhook.py
+        continue-on-error: true
