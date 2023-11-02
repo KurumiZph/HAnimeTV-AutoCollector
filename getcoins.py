@@ -107,11 +107,12 @@ def main():
 
     s.headers.update({"X-Session-Token": info["session_token"]})
 
-    print(f"[*] Logged in as {info['name']}")
-    print(f"[*] Coins count: {info['coins']}")
+    print(f"User: {info['name']}")
+    print(f"Coins: {info['coins']}")
 
     if info['last_clicked'] is not None:
-        print(f"[*] Last clicked on {parser.parse(info['last_clicked']).ctime()} UTC")
+        print(f"Last Check-in: {parser.parse(info['last_clicked']).ctime()} [UTC]")
+        print(f"```")
 
         previous_time = parser.parse(info["last_clicked"]).timestamp()
         if time.time() - previous_time < 3 * 3600:
