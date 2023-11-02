@@ -1,6 +1,9 @@
-﻿#THIS FILE SENDS THE HOUSE.TXT FILE CONTENT TO THE WEBHOOK
+# Import the necessary library
 import requests
-import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 def send_to_discord_webhook(file_path):
     try:
@@ -8,8 +11,13 @@ def send_to_discord_webhook(file_path):
         with open(file_path, 'r') as file:
             content = file.read()
 
-        # Retrieve the webhook URL from the secret
-        webhook_url = os.environ.get('HOOK')
+        # Retrieve the webhook URL from the environment variables
+        webhook_url = os.getenv('WEBHOOK_URL')
+
+        # Check if the webhook URL is not found
+        if webhook_url is None:
+            print("Webhook URL not found in the .env file. Please set it in the .env file.")
+            return
 
         # Prepare the payload to be sent to the Discord webhook
         payload = {
@@ -30,8 +38,7 @@ def send_to_discord_webhook(file_path):
 
 #THIS IS TO CONFIGURE THE WEBHOOK
 if __name__ == "__main__":
-    # webhook_url = "INPUT YOUR WEBHOOK HERE"
     file_path = "house.txt"  # Update the file path accordingly
 #-CONFIG END-
 
-    send_to_discord_webhook(webhook_url, file_path)
+send_to_discord_webhook(file_path)
