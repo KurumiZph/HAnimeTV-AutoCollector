@@ -12,6 +12,7 @@ jobs:
     env:
       hanime_email: ${{ secrets.EID }}
       hanime_password: ${{ secrets.PASS }}
+      webhook_url: ${{ secrets.HOOK }}
 
     steps:
       - name: Checkout the code nya~
