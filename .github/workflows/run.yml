@@ -1,4 +1,4 @@
-name: Run every 3H5M
+name: Run every 4 Hours
 
 on:
   schedule:
