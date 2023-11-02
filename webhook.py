@@ -1,6 +1,8 @@
 ﻿#THIS FILE SENDS THE HOUSE.TXT FILE CONTENT TO THE WEBHOOK
 import requests
 
+import os
+
 def send_to_discord_webhook(webhook_url, file_path):
     try:
         # Read the content of the file
