@@ -30,8 +30,8 @@ jobs:
         run: python getcoins.py
         continue-on-error: true
 
-      - name: Wait for 1 minute owo~
-        run: sleep 60
+      - name: Wait for 10 Seconds owo~
+        run: sleep 10
 
       - name: Run webhook.py uwu~
         run: python webhook.py
