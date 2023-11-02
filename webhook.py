@@ -7,6 +7,9 @@ def send_to_discord_webhook(webhook_url, file_path):
         with open(file_path, 'r') as file:
             content = file.read()
 
+        # Retrieve the webhook URL from the secret
+        webhook_url = os.environ.get('HOOK')
+
         # Prepare the payload to be sent to the Discord webhook
         payload = {
             'content': content
@@ -26,7 +29,7 @@ def send_to_discord_webhook(webhook_url, file_path):
 
 #THIS IS TO CONFIGURE THE WEBHOOK
 if __name__ == "__main__":
-    webhook_url = "INPUT YOUR WEBHOOK HERE"
+    # webhook_url = "INPUT YOUR WEBHOOK HERE"
     file_path = "house.txt"  # Update the file path accordingly
 #-CONFIG END-
 
