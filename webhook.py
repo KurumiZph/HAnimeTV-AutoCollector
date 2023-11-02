@@ -12,7 +12,7 @@ def send_to_discord_webhook(file_path):
             content = file.read()
 
         # Retrieve the webhook URL from the environment variables
-        webhook_url = os.getenv('WEBHOOK_URL')
+        webhook_url = os.getenv('webhook_url')
 
         # Check if the webhook URL is not found
         if webhook_url is None:
