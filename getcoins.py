@@ -117,7 +117,7 @@ def main():
         # Convert UTC to IST - personal choice
         ist_tz = pytz.timezone('Asia/Kolkata')
         ist_time = utc_time.astimezone(ist_tz)
-        print(f"Last Check-in: {ist_time.strftime('%d %b %I:%M:%S %p')}")
+        print(f"Last Check-in: {ist_time.strftime('%d %b %y %I:%M.%S %p')}")
         
         print(f"```")
 
