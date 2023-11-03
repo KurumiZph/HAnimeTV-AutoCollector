@@ -2,6 +2,8 @@
 import json
 import os
 import time
+from dateutil import parser
+from datetime import timedelta
 from hashlib import sha256
 
 import requests
@@ -111,7 +113,9 @@ def main():
     print(f"Coins: {info['coins']}")
 
     if info['last_clicked'] is not None:
-        print(f"Last Check-in: {parser.parse(info['last_clicked']).ctime()} [UTC]")
+        utc_time = parser.parse(info['last_clicked'])
+        ist_time = utc_time + timedelta(hours=5, minutes=30)
+        print(f"Last Check-in: {ist_time.strftime('%I:%M:%S %p')} [IST]")
         print(f"```")
 
         previous_time = parser.parse(info["last_clicked"]).timestamp()
