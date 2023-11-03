@@ -2,8 +2,7 @@
 import json
 import os
 import time
-from dateutil import parser
-from datetime import timedelta
+import pytz
 from hashlib import sha256
 
 import requests
@@ -114,8 +113,12 @@ def main():
 
     if info['last_clicked'] is not None:
         utc_time = parser.parse(info['last_clicked'])
-        ist_time = utc_time + timedelta(hours=5, minutes=30)
-        print(f"Last Check-in: {ist_time.strftime('%I:%M:%S %p')} [IST]")
+        
+        # Convert UTC to IST - personal choice
+        ist_tz = pytz.timezone('Asia/Kolkata')
+        ist_time = utc_time.astimezone(ist_tz)
+        print(f"Last Check-in: {ist_time.strftime('%d %b %I:%M:%S %p')}")
+        
         print(f"```")
 
         previous_time = parser.parse(info["last_clicked"]).timestamp()
