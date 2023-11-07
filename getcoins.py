@@ -92,10 +92,10 @@ def getCoins(s: requests.Session, version, uid):
 
     if '{"errors":["Unauthorized"]}' in response.text:
         raise SystemExit("[!!!] Something went wrong, please report issue on github")
-    received_coins = getCoins(s, info["version"], info["uid"])
-    return received_coins
-    # print(f"Coins Received: {json.loads(response.text)['rewarded_amount']}")
-    # print(f"```")
+    # received_coins = getCoins(s, info["version"], info["uid"])
+    # return received_coins
+    print(f"Coins Received: {json.loads(response.text)['rewarded_amount']}")
+    print(f"```")
 
 
 def main():
@@ -122,11 +122,7 @@ def main():
         ist_time = utc_time.astimezone(ist_tz)
         print(f"Last Check-in: {ist_time.strftime('%d.%b.%y %I:%M.%S %p')}")
 
-        if received_coins is not None:
-            print(f"Coins Received: {received_coins}")
-        else:
-            print("Coins Received: None")
-        print("```")
+        # print("```")
 
         previous_time = parser.parse(info["last_clicked"]).timestamp()
         if time.time() - previous_time < 3 * 3600:
